@@ -1,4 +1,4 @@
-﻿using ClassLibrary1;
+﻿using DbLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace BirdsForm
 {
@@ -69,6 +70,9 @@ namespace BirdsForm
             // need to repeat that sort of code after you add 2 new listBox's named listBoxBirds and listBox Birders.
             // You also have to define two new Classes, Bird and Birder as I did for a new Region class
 
+            textBoxDate.Text = DateTime.Now.Date.ToString("MM/dd/yyyy");
+            //Console.WriteLine(DateTime.Now.Date);
+
             updateScreen();
         }
 
@@ -111,6 +115,12 @@ namespace BirdsForm
         private void button1_Click(object sender, EventArgs e)
         {
             new RelatedTablesForm().Show();
+        }
+
+        private void homeForm_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new NavigationForm().ShowDialog();
         }
     }
 }

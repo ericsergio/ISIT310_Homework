@@ -3,18 +3,53 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
-namespace ClassLibrary1
+namespace DbLib
 {
     public static class DBaccess
     {
-        //rivate const string connectString = @"Server=localhost; Database= Birds; Integrated Security=True";
+        //private const string connectString = @"Server=localhost; Database= Birds; Integrated Security=True";
         private const string connectString = @"Server=tcp:eds-azure.database.windows.net,1433;Initial Catalog = Birds; Persist Security Info=False;
             User ID = ericsergio; Password=r1gHtCl1ck$; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
 
         private const string sqlErrorMessage = "Database operation failed. Please contact your System Administrator";
+        private const String xmlFile = @"Y:\Documents\School\23\Winter\isit310\docs\RemoteBirdClub.xml";
+
+        
+
+        public static void doXml() {
+            
+
+        }         
+
+        public static DataSet GetRawCountDataSet() { 
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from BirdCount Order By CountID", connectString);
+            DataTable dataTable = new DataTable();
+            //dataTable.Columns.Add()
+            dataAdapter.Fill(dataTable);
+            foreach(DataRow row in dataTable.Rows)
+            {
+                Console.WriteLine("{0} {1} {2} {3} {4} {5}", row["CountID"], row["RegionID"], row["BirderID"], row["BirdID"], row["CountDate"], row["Counted"]);
+            }
+            Console.WriteLine("-----------");
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "BirdCount");
+            //dataTable
+            /*foreach(DataRow row in dataSet.Tables["BirdCount"].Rows)
+            {
+                //Console.WriteLine((string)row["CountID"], row["RegionID"], row["BirderID"], row["BirdID"], row["CountDate"], row["Counted"]);
+            }*/
+            return dataSet;
+        }
+
+
+
+
+
         static public List<CountRowReturn> GetCountData()
         {
             List<CountRowReturn> DataList = new List<CountRowReturn>();
@@ -295,11 +330,112 @@ namespace ClassLibrary1
                 throw ex;
             }
         }
+
+
+
+        /*public static void CommitBirdData(DataSet birdDataSet)
+        {
+            SqlConnection myConnection = new SqlConnection(connectString);
+            string updateCommandString = "UPDATE Bird Set Name=@Name Description=@Description " +
+                "WHERE BirdID = @BirdId";
+            SqlCommand updateCommand = new SqlCommand(updateCommandString, myConnection);
+            SqlDataAdapter myAdapter = new SqlDataAdapter();
+            myAdapter.UpdateCommand = updateCommand;
+
+            myAdapter.UpdateCommand.Parameters.Add("@BirdID", System.Data.SqlDbType.NVarChar, 10);
+            myAdapter.UpdateCommand.Parameters["@BirdID"].SourceColumn = "BirdID";
+
+            myAdapter.UpdateCommand.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar, 50);
+            myAdapter.UpdateCommand.Parameters["@Name"].SourceColumn = "Name";
+
+            myAdapter.UpdateCommand.Parameters.Add("@Description", System.Data.SqlDbType.NVarChar, 200);
+            myAdapter.UpdateCommand.Parameters["@Description"].SourceColumn = "Description";
+        }*/
+
+        /*public static void updateFromXML(string pRegionID, int pBirderID, string pBirdID, DateTime pCountDate, int pCounted)
+        {
+            try
+            {
+                SqlCommand insert = new SqlCommand();
+                insert.Connection = new SqlConnection(connectString);
+                insert.CommandText = "INSERT INTO BirdCount(RegionID, BirderID, BirdID, CountDate, Counted) VALUES (@RegionID, @BirderID, @BirdID, @CountDate, @Counted)";
+                
+                insert.Parameters.Add("@RegionID", System.Data.SqlDbType.NVarChar);
+                insert.Parameters["@RegionID"].Value = pRegionID;
+
+                insert.Parameters.Add("@BirderID", System.Data.SqlDbType.Int);
+                insert.Parameters["@BirderID"].Value = pBirderID;
+
+                insert.Parameters.Add("@BirdID", System.Data.SqlDbType.NVarChar);
+                insert.Parameters["@BirdID"].Value = pBirdID;
+
+                insert.Parameters.Add("@CountDate", System.Data.SqlDbType.SmallDateTime);
+                insert.Parameters["@CountDate"].Value = pCountDate;
+
+                insert.Parameters.Add("@Counted", System.Data.SqlDbType.Int);
+                insert.Parameters["@Counted"].Value = pCounted;
+
+                insert.Connection.Open();
+                insert.ExecuteNonQuery();
+                insert.Connection.Close();
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException("Sql Error: " + e);
+            }
+
+        }*/
+
+        public static void/*DataSet*/ UpdateBirdCount(string pRegionID, int pBirderID, string pBirdID, DateTime pCountDate, int pCounted)
+        {
+            
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand insert = new SqlCommand();
+            //adapter.insert = new SqlCommand();
+            //adapter.
+            insert.Connection = new SqlConnection();
+            //adapter.SelectCommand = new SqlCommand();
+            //adapter.SelectCommand.Connection = new SqlConnection();
+
+            //try
+            //{
+                //adapter.
+                insert.Connection.ConnectionString = connectString;
+                //adapter.
+                insert.CommandText = "INSERT INTO BirdCount(RegionID, BirderID, BirdID, CountDate, Counted) " +
+                    "VALUES (@RegionID, @BirderID, @BirdID, @CountDate, @Counted)";
+            insert.Parameters.Add("@RegionID", System.Data.SqlDbType.NVarChar);
+            insert.Parameters["@RegionID"].Value = pRegionID;
+
+            insert.Parameters.Add("@BirderID", System.Data.SqlDbType.Int);
+            insert.Parameters["@BirderID"].Value = pBirderID;
+
+            insert.Parameters.Add("@BirdID", System.Data.SqlDbType.NVarChar);
+            insert.Parameters["@BirdID"].Value = pBirdID;
+
+            insert.Parameters.Add("@CountDate", System.Data.SqlDbType.SmallDateTime);
+            insert.Parameters["@CountDate"].Value = pCountDate;
+
+            insert.Parameters.Add("@Counted", System.Data.SqlDbType.Int);
+            insert.Parameters["@Counted"].Value = pCounted;
+
+            insert.Connection.Open();
+            insert.ExecuteNonQuery();
+            insert.Connection.Close();
+            /*adapter.SelectCommand.CommandText = "Select * from [BirdCount] order by CountID";
+            DataSet birdCountDataSet = new DataSet("BirdCountDataSet");
+            adapter.Fill(birdCountDataSet, "BirdCount");
+            DataSet xmlData = new DataSet();
+            xmlData.ReadXml(@"Y:\Documents\School\23\Winter\isit310\docs\RemoteBirdClub.xml");*/
+
+            //}
+        }
         
     } // end of DBaccess class
 
 
-    // classes needed to transport SQL row data in the form of a C# object
+
+
 
     public class CountRow
     {
