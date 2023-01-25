@@ -30,7 +30,6 @@
         {
             this.gridXML = new System.Windows.Forms.DataGridView();
             this.gridSQL = new System.Windows.Forms.DataGridView();
-            this.mergeXml = new System.Windows.Forms.Button();
             this.showDb = new System.Windows.Forms.Button();
             this.showXml = new System.Windows.Forms.Button();
             this.goHome = new System.Windows.Forms.Button();
@@ -51,23 +50,10 @@
             // gridSQL
             // 
             this.gridSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridSQL.Location = new System.Drawing.Point(163, 233);
+            this.gridSQL.Location = new System.Drawing.Point(163, 238);
             this.gridSQL.Name = "gridSQL";
             this.gridSQL.Size = new System.Drawing.Size(671, 281);
             this.gridSQL.TabIndex = 2;
-            // 
-            // mergeXml
-            // 
-            this.mergeXml.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.mergeXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mergeXml.ForeColor = System.Drawing.Color.White;
-            this.mergeXml.Location = new System.Drawing.Point(33, 338);
-            this.mergeXml.Name = "mergeXml";
-            this.mergeXml.Size = new System.Drawing.Size(97, 32);
-            this.mergeXml.TabIndex = 6;
-            this.mergeXml.Text = "testXML";
-            this.mergeXml.UseVisualStyleBackColor = false;
-            this.mergeXml.Click += new System.EventHandler(this.mergeXml_Click);
             // 
             // showDb
             // 
@@ -130,7 +116,6 @@
             this.Controls.Add(this.goHome);
             this.Controls.Add(this.showXml);
             this.Controls.Add(this.showDb);
-            this.Controls.Add(this.mergeXml);
             this.Controls.Add(this.gridSQL);
             this.Controls.Add(this.gridXML);
             this.Name = "XMLtoDB";
@@ -145,7 +130,6 @@
 
         private System.Windows.Forms.DataGridView gridXML;
         private System.Windows.Forms.DataGridView gridSQL;
-        private System.Windows.Forms.Button mergeXml;
         private System.Windows.Forms.Button showDb;
         private System.Windows.Forms.Button showXml;
         private System.Windows.Forms.Button goHome;

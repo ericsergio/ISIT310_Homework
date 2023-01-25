@@ -55,9 +55,5 @@ namespace BirdsForm
             xmlData.ReadXml(xmlFile);
             DBaccess.DoXML(xmlData);
         }
-        private void mergeXml_Click(object sender, EventArgs e)
-        {
-            DBaccess.doXml();
-        }
     }
 }
