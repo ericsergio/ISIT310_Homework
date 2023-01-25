@@ -20,7 +20,7 @@ namespace BirdsForm
 {
     public partial class XMLtoDB : Form
     {
-        private DataSet birdsDataSet;
+        private DataSet birdDataSet;
         private const String xmlFile = @"Y:\Documents\School\23\Winter\isit310\docs\RemoteBirdClub.xml";
 
 
@@ -44,25 +44,16 @@ namespace BirdsForm
 
         private void showDb_Click(object sender, EventArgs e)
         {
-            birdsDataSet = DBaccess.GetBirds();
+            birdDataSet = DBaccess.GetBirds();
 
-            gridSQL.DataSource = birdsDataSet;
+            gridSQL.DataSource = birdDataSet;
             gridSQL.DataMember = "BirdCount";
         }
         private void saveXml_Click(object sender, EventArgs e)
         {
-            /*was just testing -- do not think any of this correct*/
-            //string xmlData = null;
-            IList xmlData = DBaccess.GetCountData();
-            foreach(int prop in xmlData)
-            {
-                Console.WriteLine(prop);
-            }
-            //MessageBox.Show(xmlData, "CountDataSet");
-            //MessageBox.Show(xmlData.ToString());
-
-           
-
+            DataSet xmlData = new DataSet();
+            xmlData.ReadXml(xmlFile);
+            DBaccess.DoXML(xmlData);
         }
         private void mergeXml_Click(object sender, EventArgs e)
         {
