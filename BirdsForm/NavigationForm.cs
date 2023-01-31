@@ -24,15 +24,17 @@ namespace BirdsForm
             new XMLtoDB().ShowDialog();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new NorthwindForm().ShowDialog();
+        }
         private void button5_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BirdsForm.Properties {
+namespace ClassLibrary1.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,22 +26,11 @@ namespace BirdsForm.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:eds-azure.database.windows.net;Initial Catalog=Birds;Persist Secu" +
-            "rity Info=True;User ID=ericsergio;Password=r1gHtCl1ck$")]
-        public string BirdsConnectionString {
-            get {
-                return ((string)(this["BirdsConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:eds-azure.database.windows.net;Initial Catalog=Northwind;Persist " +
             "Security Info=True;User ID=ericsergio;Password=r1gHtCl1ck$")]
-        public string NorthwindConnectionString {
+        public string NorthConnectionString {
             get {
-                return ((string)(this["NorthwindConnectionString"]));
+                return ((string)(this["NorthConnectionString"]));
             }
         }
     }

@@ -10,5 +10,13 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=tcp:eds-azure.database.windows.net;Initial Catalog=Birds;Persist Security Info=True;User ID=ericsergio;Password=r1gHtCl1ck$</Value>
     </Setting>
+    <Setting Name="NorthwindConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=tcp:eds-azure.database.windows.net;Initial Catalog=Northwind;Persist Security Info=True;User ID=ericsergio;Password=r1gHtCl1ck$&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=tcp:eds-azure.database.windows.net;Initial Catalog=Northwind;Persist Security Info=True;User ID=ericsergio;Password=r1gHtCl1ck$</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

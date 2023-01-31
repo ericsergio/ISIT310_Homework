@@ -13,8 +13,11 @@ namespace DbLib
 {
     public static class DBaccess
     {
-        //private const string connectString = @"Server=localhost; Database= Birds; Integrated Security=True";
-        private const string connectString = @"Server=tcp:eds-azure.database.windows.net,1433;Initial Catalog = Birds; Persist Security Info=False;
+        //private const string birdsConnectString = @"Server=localhost; Database= Birds; Integrated Security=True";
+        private const string birdsConnectString = @"Server=tcp:eds-azure.database.windows.net,1433;Initial Catalog = Birds; Persist Security Info=False;
+            User ID = ericsergio; Password=r1gHtCl1ck$; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
+
+        private const string northConnectString = @"Server=tcp:eds-azure.database.windows.net,1433;Initial Catalog = Northwind; Persist Security Info=False;
             User ID = ericsergio; Password=r1gHtCl1ck$; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
 
         private const string sqlErrorMessage = "Database operation failed. Please contact your System Administrator";
@@ -22,7 +25,7 @@ namespace DbLib
 
 
         public static DataSet GetRawCountDataSet() { 
-        SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from BirdCount Order By CountID", connectString);
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from BirdCount Order By CountID", birdsConnectString);
             DataTable dataTable = new DataTable();
             //dataTable.Columns.Add()
             dataAdapter.Fill(dataTable);
@@ -46,7 +49,7 @@ namespace DbLib
             List<CountRowReturn> DataList = new List<CountRowReturn>();
             SqlDataReader birdReader;  //datareader
             SqlCommand selectCommand = new SqlCommand();
-            selectCommand.Connection = new SqlConnection(connectString);
+            selectCommand.Connection = new SqlConnection(birdsConnectString);
             selectCommand.CommandText =
                     "SELECT Region.RegionName, Bird.Name, Birder.FirstName, Birder.LastName, BirdCount.CountDate, BirdCount.Counted " +
                         "FROM Bird INNER JOIN " +
@@ -76,7 +79,7 @@ namespace DbLib
 
         public static List<Bird> GetBird()
         {
-            SqlConnection connection = new SqlConnection(connectString);
+            SqlConnection connection = new SqlConnection(birdsConnectString);
             SqlCommand commRegion = new SqlCommand("SELECT BirdID, Name FROM Bird", connection);
             List<Bird> BirdList = new List<Bird>();
             try
@@ -109,7 +112,7 @@ namespace DbLib
             try
             {
                 SqlCommand insertCommand = new SqlCommand();
-                insertCommand.Connection = new SqlConnection(connectString);
+                insertCommand.Connection = new SqlConnection(birdsConnectString);
                 insertCommand.CommandText = "INSERT INTO Bird (Name, BirdID, Description) VALUES( @Name, @ID, @DESC) ";
                 
                 insertCommand.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar);
@@ -139,7 +142,7 @@ namespace DbLib
             try
             {
                 SqlCommand insertCommand = new SqlCommand();
-                insertCommand.Connection = new SqlConnection(connectString);
+                insertCommand.Connection = new SqlConnection(birdsConnectString);
                 insertCommand.CommandText = "INSERT INTO Birder (FirstName, LastName, Phone) VALUES( @FirstName, @LastName, @PHONE)";
                 
                 insertCommand.Parameters.Add("@FirstName", System.Data.SqlDbType.NVarChar);
@@ -170,7 +173,7 @@ namespace DbLib
             try
             {
                 SqlCommand insertCommand = new SqlCommand();
-                insertCommand.Connection = new SqlConnection(connectString);
+                insertCommand.Connection = new SqlConnection(birdsConnectString);
                 insertCommand.CommandText = "INSERT INTO Region (RegionName, RegionID) VALUES( @Name, @ID) ";
                
                 insertCommand.Parameters.Add("@Name", System.Data.SqlDbType.NVarChar);
@@ -193,7 +196,7 @@ namespace DbLib
 
         public static List<Birder> GetBirder()
         {
-            SqlConnection connection = new SqlConnection(connectString);
+            SqlConnection connection = new SqlConnection(birdsConnectString);
             SqlCommand commRegion = new SqlCommand("SELECT BirderID, LastName, FirstName FROM Birder", connection);
             List<Birder> BirderList = new List<Birder>();
             try
@@ -225,7 +228,7 @@ namespace DbLib
             try
             {
                 SqlCommand insertCommand = new SqlCommand();
-                insertCommand.Connection = new SqlConnection(connectString);
+                insertCommand.Connection = new SqlConnection(birdsConnectString);
                 insertCommand.CommandText =
                     "INSERT INTO BirdCount (BirderID, BirdID, RegionID, Counted, CountDate ) VALUES( " +
                     "" + addCountRow.BirderID + " , '" + addCountRow.BirdID + "' , '" + addCountRow.RegionID + "' ,  @Counted, @CountDate) ";
@@ -247,7 +250,7 @@ namespace DbLib
 
         public static List<Regions> GetRegions() 
         {
-            SqlConnection connection = new SqlConnection(connectString);
+            SqlConnection connection = new SqlConnection(birdsConnectString);
             SqlCommand commRegion = new SqlCommand("SELECT RegionID, RegionName FROM Region", connection);
             List<Regions> RegionList = new List<Regions>();
             try
@@ -282,7 +285,7 @@ namespace DbLib
             BirdAdapter.SelectCommand.Connection = new SqlConnection();
             try
             {
-                BirdAdapter.SelectCommand.Connection.ConnectionString = connectString;
+                BirdAdapter.SelectCommand.Connection.ConnectionString = birdsConnectString;
                 BirdAdapter.SelectCommand.CommandText = "Select * from [Bird] order by BirdID";
 
                 DataSet birdDataSet = new DataSet("BirdDataSet");
@@ -320,7 +323,7 @@ namespace DbLib
             birdCountAdapter.InsertCommand.CommandText = "INSERT into BirdCount(RegionID,BirderID,BirdID,CountDate,Counted)" +
                 "VALUES (@RegionID,@BirderID,@BirdID,@CountDate,@Counted)";
             birdCountAdapter.InsertCommand.Connection = new SqlConnection();
-            birdCountAdapter.InsertCommand.Connection.ConnectionString = connectString;
+            birdCountAdapter.InsertCommand.Connection.ConnectionString = birdsConnectString;
             try
             {
                 birdCountAdapter.InsertCommand.Parameters.Add("@RegionID", System.Data.SqlDbType.NVarChar, 5);
