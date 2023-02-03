@@ -25,26 +25,28 @@ namespace BirdsForm
 
         private void NorthwindForm_Load(object sender, EventArgs e)
         {
-            DataClassDataContext dataContext = new DataClassDataContext();
+            DataClassDataContext context = new DataClassDataContext();
             string orderDisplay = "City\t\tDate\t\tCompany\t\tShipping Company";
 
-            var orders = from myOrders in dataContext.Orders
-                         join customers in dataContext.Customers
-                         on myOrders.CustomerID equals customers.CustomerID
-                         join shippers in dataContext.Shippers
-                         on myOrders.ShipVia equals shippers.ShipperID
-                         where myOrders.ShipCity == "Seattle" || myOrders.ShipCity == "Portland"
-                         orderby myOrders.ShipCity, myOrders.ShippedDate ascending
+            var orders = from o in context.Orders
+                         //************************I pushed these changes late, I originally had the join but fixed it.
+                         //join c in context.Customers
+                         //on o.CustomerID equals c.CustomerID
+                         //join s in context.Shippers
+                         //on o.ShipVia equals s.ShipperID
+                         where o.ShipCity == "Seattle" || o.ShipCity == "Portland"
+                         orderby o.ShipCity, o.ShippedDate ascending
                          select new { 
-                             City = myOrders.ShipCity, 
-                             Date = myOrders.ShippedDate,
-                             CompanyName = customers.CompanyName,
-                             ShipperName = shippers.CompanyName
+                             City = o.ShipCity, 
+                             Date = o.ShippedDate,
+                             CompanyName = o.Customer.CompanyName,
+                             ShipperName = o.Shipper.CompanyName,
+                             //ShipName = o.ShipName
                              
                              
                          };
 
-            foreach ( var order in orders )
+            foreach (var order in orders)
             {
                 orderDisplay += order.City.ToString() + "\t\t\t" + order.Date + "\t\t\t" + order.CompanyName + "\t\t\t" + order.ShipperName;
             }
