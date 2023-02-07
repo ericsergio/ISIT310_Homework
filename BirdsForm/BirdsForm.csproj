@@ -296,6 +296,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Homework5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Homework5.Designer.cs">
+      <DependentUpon>Homework5.cs</DependentUpon>
+    </Compile>
     <Compile Include="NavigationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewRegion.resx">
       <DependentUpon>FormNewRegion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Homework5.resx">
+      <DependentUpon>Homework5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NavigationForm.resx">
       <DependentUpon>NavigationForm.cs</DependentUpon>

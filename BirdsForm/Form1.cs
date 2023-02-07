@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using ClassLibrary1;
 
 namespace BirdsForm
 {
@@ -39,10 +40,11 @@ namespace BirdsForm
 
             //====================================================================
 
-            List<Bird> BirdList = DBaccess.GetBird(); 
+            List<Bird> BirdList = DBaccess.GetBird();
+            //DataSet BirdList = DBaccess.GetBirds();
 
             // now set up the listBox to get its data from that List
-         
+
             listBoxBird.DataSource = BirdList;
 
             listBoxBird.ValueMember = "BirdID";
@@ -88,28 +90,28 @@ namespace BirdsForm
         {
             CountRow addCountRow = new CountRow();
             addCountRow.RegionID = (listBoxRegions.SelectedValue).ToString();
-            addCountRow.BirderID = listBoxBirder.SelectedIndex;                               //  <<<<<<<<   need to change this to get value from a new listBoxBirders
+            addCountRow.BirderID = listBoxBirder.SelectedIndex;//  <<<<<<<<   need to change this to get value from a new listBoxBirders
             addCountRow.BirdID = listBoxBird.SelectedValue.ToString();
             addCountRow.Count = Convert.ToInt32(textBoxCount.Text);
             addCountRow.CountDate = Convert.ToDateTime(textBoxDate.Text);
             DBaccess.AddCount(addCountRow);
-
-            updateScreen();  // refresh the display
+            // refresh the display
+            updateScreen();
         }
 
         private void buttonAddRegion_Click(object sender, EventArgs e)
         {
-            new FormNewRegion().Show();  // opens and starts another form
+            new FormNewRegion().Show();
         }
 
         private void buttonAddBirdType_Click(object sender, EventArgs e)
         {
-            new FormNewBird().Show(); // opens and starts another form
+            new FormNewBird().Show();
         }
 
         private void buttonAddBirder_Click(object sender, EventArgs e)
         {
-            new FormNewBirder().Show(); // opens and starts another form
+            new FormNewBirder().Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

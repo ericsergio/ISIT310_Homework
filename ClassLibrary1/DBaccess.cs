@@ -90,7 +90,7 @@ namespace DbLib
                 {
                     Bird tempBird = new Bird();
                     tempBird.BirdID = reader["BirdID"].ToString();
-                    tempBird.Name = reader["Name"].ToString();
+                    tempBird.BirdName = reader["Name"].ToString();
                     BirdList.Add(tempBird);
                 }
                 reader.Close();

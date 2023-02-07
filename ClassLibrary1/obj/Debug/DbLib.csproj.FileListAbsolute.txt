@@ -1,0 +1,7 @@
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\obj\Debug\DbLib.csproj.AssemblyReference.cache
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\obj\Debug\DbLib.csproj.CoreCompileInputs.cache
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+Y:\Documents\School\23\Winter\isit310\projects\ISIT310_Homework\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
