@@ -29,7 +29,8 @@ namespace BirdsForm
             string orderDisplay = "City\t\tDate\t\tCompany\t\tShipping Company";
 
             var orders = from o in context.Orders
-                         //************************I pushed these changes late, I originally had the join but fixed it.
+                         //************************I pushed these changes late,
+                         //I originally had the join but fixed it.
                          //join c in context.Customers
                          //on o.CustomerID equals c.CustomerID
                          //join s in context.Shippers
@@ -48,7 +49,8 @@ namespace BirdsForm
 
             foreach (var order in orders)
             {
-                orderDisplay += order.City.ToString() + "\t\t\t" + order.Date + "\t\t\t" + order.CompanyName + "\t\t\t" + order.ShipperName;
+                orderDisplay += order.City.ToString() + "\t\t\t" + 
+                    order.Date + "\t\t\t" + order.CompanyName + "\t\t\t" + order.ShipperName;
             }
             grid1.DataSource = orders;
         }

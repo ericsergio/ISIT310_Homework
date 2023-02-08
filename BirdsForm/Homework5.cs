@@ -22,5 +22,21 @@ namespace BirdsForm
             this.Hide();
             new NavigationForm().ShowDialog();
         }
+
+        private void Homework5_Load(object sender, EventArgs e)
+        {
+            BirdsEntities1 entityContext = new BirdsEntities1();
+
+            var birdCountBirders =
+                from eachCountedBird in entityContext.BirdCounts
+                orderby eachCountedBird.Counted ascending
+                select new
+                {
+                    BirdID = eachCountedBird.BirderID,
+                    eachCountedBird.Counted,
+                    Name = eachCountedBird.Bird.Name.ToString()
+                };            
+            gridEntityData.DataSource = birdCountBirders.ToList();
+        }
     }
 }

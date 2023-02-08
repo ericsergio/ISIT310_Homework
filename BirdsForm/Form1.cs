@@ -40,7 +40,8 @@ namespace BirdsForm
 
             //====================================================================
 
-            List<Bird> BirdList = DBaccess.GetBird();
+            //List<Bird> BirdList = DBaccess.GetBird();
+            DataSet BirdList = DBaccess.GetBirds();
             //DataSet BirdList = DBaccess.GetBirds();
 
             // now set up the listBox to get its data from that List
